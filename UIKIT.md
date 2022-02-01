@@ -215,5 +215,77 @@ dist/ yellowed
 	
 <details><summary>Initial setup</summary>
 <p>
+	
+Move to folder **c:\dev\angular\**
+
+```	
+ng: Angular
+```	
+
+Create a new workspace and an initial Angular application
+	
+wt
+
+```ps
+ng new petshop
+? Would you like to add Angular routing? Yes
+? Which stylesheet format would you like to use? CSS
+```
+
+code c:\dev\angular\petshop
+
+```	
+src/
+	index.html		
+```
+	
+<details><summary>index.html</summary>	
+	
+```html	
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Dachshop</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300" rel="stylesheet">			<
+  <link rel="stylesheet" href="assets/css/uikit.min.css">						<
+</head>
+
+<body>
+  <app-root></app-root>
+
+  <script src="assets/js/uikit.min.js"></script>							<
+  <script src="assets/js/uikit-icons.min.js"></script>							<
+</body>
+
+</html>	
+```	
+	
+</details>
+	
+Reveal in File Explorer **src/assets**
+		
+Copy uikit\dist\* (only *min*)
+
+	css/*
+
+	js/*		
+
+Paste **src\assets**
+		
+
+Copy favicon.ico from uikit\assets and Paste to petshop\src (https://xiconeditor.com/)
+		
+wt 
+	
+```ps	
+ng serve -o	
+```	
+	
 </p>
 </details>					
