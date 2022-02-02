@@ -435,3 +435,60 @@ src/app/
 	
 </p>
 </details>						
+
+</p>
+</details>						
+
+<details><summary>Password Reset Screen</summary>	
+<p>	
+
+```	
+src/app/
+	app.component.html
+	reset-password-page/
+		reset-password-page.component.html
+```	
+	
+<details><summary>app.component.html</summary>	
+<p>	
+
+```html
+<app-reset-password-page></app-reset-password-page>
+```
+
+</p>
+</details>						
+
+<details><summary>reset-password-page.component.html</summary>	
+<p>	
+
+```html
+<div class="uk-flex-center" uk-grid>
+    <!-- 1/3 tela + mobile -->
+    <div class="uk-width-1-4@m">
+        <p class="uk-text-center uk-margin-large-top uk-margin-medium-bottom">
+            <span class="uk-icon" uk-icon="icon: logo-color-dark; ratio: 0.7"></span>
+        </p>
+
+        <div class="uk-card uk-card-primary uk-card-body uk-box-shadow-small">
+            <h3 class="uk-card-title">Restauração de Senha</h3>
+            <div class="uk-margin">
+                <input class="uk-input uk-form-large" type="email" placeholder="E-mail">
+            </div>
+            <div class="uk-margin uk-text-right">
+                <a href="/login" class="uk-button uk-button-default">Restaurar Senha</a>
+            </div>
+        </div>
+
+        <p class="uk-text-center">
+            <a href="/login" class="uk-button uk-button-link">
+                Voltar
+            </a>
+        </p>
+    </div>
+</div>	
+```    
+	
+</p>
+</details>						
+	
