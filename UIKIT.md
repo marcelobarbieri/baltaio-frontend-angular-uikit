@@ -580,7 +580,7 @@ src/
         <link rel="stylesheet" href="assets/css/uikit.min.css">
     </head>
 
-    <body class="uk-background-muted" uk-height-viewport="expand: true">							<
+    <body class="uk-background-muted" uk-height-viewport="expand: true">				<
         <app-root></app-root>
 
         <script src="assets/js/uikit.min.js"></script>
