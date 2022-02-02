@@ -565,7 +565,6 @@ src/
 <p>	
     
 ```html
-
 <!doctype html>
 <html lang="en">
 
@@ -587,8 +586,7 @@ src/
         <script src="assets/js/uikit-icons.min.js"></script>
     </body>
 
-</html>	
-	
+</html>		
 ```    
     
 </p>
@@ -597,4 +595,258 @@ src/
 </p>
 </details>						
 
-	
+<details><summary>Pets Screen</summary>	
+<p>	
+
+wt	
+
+```ps
+ng generate component PetsPage
+```	
+
+```
+src/app/
+	app.component.html
+	pets-page/
+		pets-page.component.html
+```		
+
+<details><summary>app.component.html</summary>	
+<p>	
+
+```html
+<app-navbar></app-navbar>
+<app-pets-page></app-pets-page>
+```
+
+</p>
+</details>						
+
+<details><summary>pets-page.componen.html</summary>	
+<p>	
+
+```html
+<div class="uk-container">
+    <nav class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left">
+            <ul class="uk-navbar-nav">
+                <li class="uk-active">Meus Pets</li>
+            </ul>
+        </div>
+        <div class="uk-navbar-right">
+            <ul class="uk-navbar-nav">
+                <li class="uk-active">
+                    <a href="#">
+                        <span class="uk-icon uk-margin-small-right" uk-icon="icon: plus"></span>
+                        Adicionar
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="uk-container">
+    <div uk-grid>
+        <div class="uk-width-1-3">
+            <div class="uk-card uk-card-default">
+                <div class="uk-card-media-top">
+                    <br>
+                    <p class="uk-text-center"><img src="https://placehold.it/250" class="uk-border-circle" alt=""></p>
+                </div>
+                <div class="uk-card-body">
+                    <h3 class="uk-card-title">Media Top</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                    <p>
+                        <a href="#" class="uk-button uk-button-default">
+                            <span class="uk-icon uk-margin-small-right" uk-icon="icon: pencil"></span>
+                            Editar
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="uk-width-1-3">
+            <div class="uk-card uk-card-default">
+                <div class="uk-card-media-top">
+                    <br>
+                    <p class="uk-text-center"><img src="https://placehold.it/250" class="uk-border-circle" alt=""></p>
+                </div>
+                <div class="uk-card-body">
+                    <h3 class="uk-card-title">Media Top</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                    <p>
+                        <a href="#" class="uk-button uk-button-default">
+                            <span class="uk-icon uk-margin-small-right" uk-icon="icon: pencil"></span>
+                            Editar
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+```
+
+</p>
+</details>						
+		
+</p>
+</details>						
+
+<details><summary>Products Screen</summary>	
+<p>	
+    
+wt	
+
+```ps
+ng generate component ProductsPage
+```    
+
+```
+src/app/
+    app.component.html
+    products-page/
+        products-page.componen.html
+```
+
+<details><summary>app.component.html</summary>	
+<p>	    
+    
+```html    
+<app-navbar></app-navbar>
+<app-products-page></app-products-page>	
+```
+
+</p>
+</details>						  
+
+<details><summary>products-page.component.html</summary>	
+<p>	
+        
+```html    
+<div class="uk-container">
+    <div class="uk-grid uk-margin-small-top">
+        <div class="uk-width-1-2 uk-margin-small-bottom">
+            <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
+                <div class="uk-card-media-left uk-cover-container">
+                    <img src="https://picsum.photos/200" alt="" uk-cover>
+                </div>
+                <div>
+                    <div class="uk-card-body">
+                        <h3 class="uk-card-title">R$ 79,90</h3>
+                        <p>Shapoo para telos macios</p>
+                        <button class="uk-button uk-button-default">
+                            <span class="uk-icon uk-margin-small-right"></span>
+                            Adicionar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>	    
+``` 
+    
+</p>
+</details>						
+    
+</p>
+</details>						    
+
+<details><summary>Cart Screen</summary>	
+<p>	
+    
+wt
+    
+```ps   
+ng generate component CartPage
+```    
+
+```    
+src/app/
+    app.component.html
+    cart-page/
+        cart-page.componen.html
+```
+    
+<details><summary>app.component.html</summary>	
+<p>	    
+    
+```html    
+<app-navbar></app-navbar>
+<app-cart-page></app-cart-page>	
+```    
+    
+</p>
+</details>						    
+  
+<details><summary>cart-page.componen.html</summary>	
+<p>	      
+    
+```html     
+<div class="uk-container">
+    <nav class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left">
+            <ul class="uk-navbar-nav">
+                <li class="uk-active">Meu Carrinho</li>
+            </ul>
+        </div>
+        <div class="uk-navbar-right">
+            <ul class="uk-navbar-nav">
+                <li class="uk-active">
+                    <a href="#">
+                        <span class="uk-icon uk-margin-small-right" uk-icon="icon: close"></span>
+                        Limpar Carrinho
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="uk-container">
+    <div class="uk-grid-small" uk-grid>
+        <div class="uk-width-expand" uk-leader>
+            <img src="https://placehold.it/64" class="uk-align-left" alt="">
+            <a href="#">Shampoo para pelos macios</a> <br>
+            <strong>2 unidades</strong>
+        </div>
+        <div>
+            <br>
+            $20.90
+            <a href="#" class="uk-buton uk-button-link uk-align-right">
+                <span class="uk-icon" uk-icon="icon: close"></span>
+            </a>
+        </div>
+    </div>
+    <div class="uk-grid-small" uk-grid>
+        <div class="uk-width-expand" uk-leader>
+            <img src="https://placehold.it/64" class="uk-align-left" alt="">
+            <a href="#">Shampoo para pelos macios</a> <br>
+            <strong>2 unidades</strong>
+        </div>
+        <div>
+            <br>
+            $20.90
+            <a href="#" class="uk-buton uk-button-link uk-align-right">
+                <span class="uk-icon" uk-icon="icon: close"></span>
+            </a>
+        </div>
+    </div>
+    <div class="uk-text-right">
+        <h3 class="uk-text-right">
+            R$ 41,80
+        </h3>
+        <a href="/checkout" class="uk-button uk-button-large uk-button-primary uk-margin-small-botom">
+            FINALIZAR COMPRA
+        </a>
+    </div>
+</div>    
+```
+
+</p>
+</details>						    
+    
+</p>
+</details>						    
+    
+    
