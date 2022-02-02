@@ -491,4 +491,110 @@ src/app/
 	
 </p>
 </details>						
+
+</p>
+</details>						
+
+<details><summary>Registration Screen</summary>	
+<p>	
+
+```	
+src/
+	index.html
+	app/
+		app.component.html
+		signup-page/
+			signup-page.component.html
+```
+	
+<details><summary>app.component.html</summary>	
+<p>	
+	
+```html	
+<app-signup-page></app-signup-page>
+```	
+
+</p>
+</details>						
+	
+<details><summary>signup-page.component.html</summary>	
+<p>	
+	
+```html
+<div class="uk-flex-center" uk-grid>
+    <!-- 1/3 tela + mobile -->
+    <div class="uk-width-1-4@m">
+        <p class="uk-text-center uk-margin-large-top uk-margin-medium-bottom">
+            <span class="uk-icon" uk-icon="icon: logo-color-dark; ratio: 0.7"></span>
+        </p>
+
+        <div class="uk-card uk-card-primary uk-card-body uk-box-shadow-small">
+            <h3 class="uk-card-title">Cadastre-se</h3>
+            <div class="uk-margin">
+                <input class="uk-input uk-form-large" type="text" placeholder="Nome">
+            </div>
+            <div class="uk-margin">
+                <input class="uk-input uk-form-large" type="text" placeholder="CPF">
+            </div>
+            <div class="uk-margin">
+                <input class="uk-input uk-form-large" type="email" placeholder="E-mail">
+            </div>
+            <div class="uk-margin">
+                <input class="uk-input uk-form-large" type="password" placeholder="Senha">
+            </div>
+            <div class="uk-margin uk-text-right">
+                <a href="/login" class="uk-button uk-button-default">Cadastrar</a>
+            </div>
+        </div>
+
+        <p class="uk-text-center">
+            <br>
+            <a href="/login" class="uk-button uk-button-link">
+                Voltar
+            </a>
+        </p>
+    </div>
+</div>
+
+```	
+	
+</p>
+</details>						
+    
+<details><summary>index.html</summary>	
+<p>	
+    
+```html
+
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Dachshop</title>
+        <base href="/">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300" rel="stylesheet">
+        <link rel="stylesheet" href="assets/css/uikit.min.css">
+    </head>
+
+    <body class="uk-background-muted" uk-height-viewport="expand: true">							<
+        <app-root></app-root>
+
+        <script src="assets/js/uikit.min.js"></script>
+        <script src="assets/js/uikit-icons.min.js"></script>
+    </body>
+
+</html>	
+	
+```    
+    
+</p>
+</details>		
+
+</p>
+</details>						
+
 	
