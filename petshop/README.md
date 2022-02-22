@@ -950,6 +950,46 @@ products-page.component.html
 
 </details>
 
+<details>
+  <summary>Coin Pipe</summary>
+
+```
+src/app/
+    components/store/product-card/
+        product-card.component.html
+```
+
+product-card.component.html
+
+```html
+<div class="uk-card uk-card-default">
+  <div class="uk-card-media-top uk-text-center">
+    <img
+      src="{{ product.image[0] }}"
+      height="150"
+      width="150"
+      class="uk-margin-small-top uk-border-circle"
+      alt=""
+    />
+  </div>
+  <div>
+    <div class="uk-card-body">
+      <h3 class="uk-card-title">
+        {{ (product.price / 100) | currency: 'BRL' }}
+      </h3>
+      <
+      <p style="height:50px;">{{ product.title }}</p>
+      <button class="uk-button uk-button-default">
+        <span class="uk-icon uk-margin-small-right"></span>
+        Adicionar
+      </button>
+    </div>
+  </div>
+</div>
+```
+
+</details>
+
 <!--
 <details>
   <summary></summary>
