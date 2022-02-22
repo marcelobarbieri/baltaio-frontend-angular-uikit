@@ -784,6 +784,113 @@ export class Product {
 
 </details>
 
+<details>
+    <summary>Using the Model</summary>
+
+```
+src/app/
+    components/
+        store/product-card/
+            product-card.component.ts
+            product-card.component.html
+        pages/
+            store/
+                products-page/
+                    products-page.component.ts
+    services/
+        data.service.ts
+```
+
+data.service.ts
+
+```ts
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Product } from '../models/product.model';                              <
+
+@Injectable({
+    providedIn: 'root'
+})
+export class DataService {
+    constructor(private http: HttpClient) { }
+
+    getProducts() {
+        return this.http.get<Product[]>('http://localhost:3000/v1/products');   <
+    }
+}
+```
+
+products-page.component.ts
+
+```ts
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Product } from 'src/app/models/product.model';                         <
+import { DataService } from 'src/app/services/data.service';
+
+@Component({
+selector: 'app-products-page',
+templateUrl: './products-page.component.html',
+})
+export class ProductsPageComponent implements OnInit {
+
+    public products$: Observable<Product[]>;                                    <
+
+    constructor(private data: DataService) {
+    }
+
+    ngOnInit(): void {
+        this.products$ = this.data.getProducts();
+    }
+}
+```
+
+product-card.component.ts
+
+```ts
+import { Component, Input, OnInit } from '@angular/core';
+import { Product } from 'src/app/models/product.model';                         <
+
+@Component({
+    selector: 'app-product-card',
+    templateUrl: './product-card.component.html'
+})
+export class ProductCardComponent implements OnInit {
+
+    @Input() product: Product;                                                  <
+
+    constructor() { }
+
+    ngOnInit(): void {
+    }
+}
+```
+
+product-card.component.html
+
+```html
+<div
+  class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin"
+  uk-grid
+>
+  <div class="uk-card-media-left uk-cover-container">
+    <img src="{{ product.image[0] }}" alt="" uk-cover />
+  </div>
+  <div>
+    <div class="uk-card-body">
+      <h3 class="uk-card-title">{{ product.price }}</h3>
+      <p>{{ product.title }}</p>
+      <button class="uk-button uk-button-default">
+        <span class="uk-icon uk-margin-small-right"></span>
+        Adicionar
+      </button>
+    </div>
+  </div>
+</div>
+```
+
+</details>
+
 <!--
 <details>
   <summary></summary>
