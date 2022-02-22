@@ -310,6 +310,31 @@ login-page.component.html
   
 </details>  
   
+<details>
+    <summary>Setup Backend</summary>
+    
+https://mockon.com
+    
+wt
+```ps    
+Set-ExecutionPolicy Bypass -Scope Process -Force; iwr https://community.chocolatey.org/install.ps1 -UseBasicParsing | iex
+choco install mockoon --version=1.4.0
+```
+    
+> Mockoon
+    
+Tools/ Import all environment from files (7181.mockon.1.4.0.json)
+    
+Start Server
+
+> Postman
+    
+New Workspace: PetStore
+    
+GET		localhost:3000/v1/products		SEND    
+    
+</details>  
+  
 <!--
 <details>
   <summary></summary>
