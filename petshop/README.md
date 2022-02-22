@@ -575,7 +575,7 @@ products-page.component.html
 </details>
 
 <details>
-  <summary>Creatomg a Component</summary>
+  <summary>Creating a Component</summary>
 
 wt
 
@@ -599,7 +599,7 @@ src/
                 products-page.component.html
 ```
 
-Move src/app/navbar/ to /src/app/components/shared/
+Move **src/app/navbar/** to **/src/app/components/shared/**
 
 app.module.ts
 
@@ -610,7 +610,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/shared/navbar/navbar.component';                                          <
+import { NavbarComponent } from './components/shared/navbar/navbar.component';                   <
 import { LoginPageComponent } from './pages/account/login-page/login-page.component';
 import { PetsPageComponent } from './pages/account/pets-page/pets-page.component';
 import { ResetPasswordPageComponent } from './pages/account/reset-password-page/reset-password-page.component';
@@ -676,6 +676,84 @@ products-page.component.html
       *ngFor="let product of products$ | async"
     >
       <app-product-card></app-product-card>
+    </div>
+  </div>
+</div>
+```
+
+</details>
+
+<details>
+    <summary>Sending Data to the Component</summary>
+
+```
+src/
+    app/
+        components/
+            store/
+                product-card/
+                    product-card.component.html
+                    product-card.component.ts
+        pages/
+            store/
+                products-page/
+                    products-page.component.html
+```
+
+product-card.component.ts
+
+```ts
+import { Component, Input, OnInit } from '@angular/core';               <
+
+@Component({
+    selector: 'app-product-card',
+    templateUrl: './product-card.component.html'
+})
+export class ProductCardComponent implements OnInit {
+
+    @Input() product: any;                                              <
+
+    constructor() { }
+
+    ngOnInit(): void {
+    }
+
+}
+```
+
+product-card.component.html
+
+```html
+<div
+  class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin"
+  uk-grid
+>
+  <div class="uk-card-media-left uk-cover-container">
+    <img src="{{ product.images[0] }}" alt="" uk-cover />
+  </div>
+  <div>
+    <div class="uk-card-body">
+      <h3 class="uk-card-title">{{ product.price }}</h3>
+      <p>{{ product.title }}</p>
+      <button class="uk-button uk-button-default">
+        <span class="uk-icon uk-margin-small-right"></span>
+        Adicionar
+      </button>
+    </div>
+  </div>
+</div>
+```
+
+products-page.component.html
+
+```html
+<div class="uk-container">
+  <div class="uk-grid uk-margin-small-top">
+    <div
+      class="uk-width-1-2 uk-margin-small-bottom"
+      *ngFor="let product of products$ | async"
+    >
+      <app-product-card [product]="product"></app-product-card> <
     </div>
   </div>
 </div>
