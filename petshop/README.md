@@ -518,7 +518,7 @@ products-page.component.ts
 
 ```ts
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';                                      <
+import { Observable } from 'rxjs';                            <
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -527,13 +527,13 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class ProductsPageComponent implements OnInit {
 
-    public products$: Observable<any[]>;                                <
+    public products$: Observable<any[]>;                      <
 
-    constructor(private data: DataService) {                            <
+    constructor(private data: DataService) {                  <
     }
 
     ngOnInit(): void {
-        this.products$ = this.data.getProducts();                       <
+        this.products$ = this.data.getProducts();             <
     }
 }
 ```
@@ -547,7 +547,6 @@ products-page.component.html
       class="uk-width-1-2 uk-margin-small-bottom"
       *ngFor="let product of products$ | async"
     >
-      <
       <div
         class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin"
         uk-grid
