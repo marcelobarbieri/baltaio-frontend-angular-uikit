@@ -1179,6 +1179,90 @@ export class AppModule { }
 
 </details>
 
+<details>
+  <summary>Additional Styles</summary>
+
+```
+src/app/
+    pages/account/login-page/
+        login-page.component.html
+        login-page.component.ts
+    styles.css
+```
+
+login-page.component.html
+
+```html
+<div class="uk-flex-center" uk-grid>
+  <!-- 1/3 tela + mobile -->
+  <div class="uk-width-1-4@m">
+    <p class="uk-text-center uk-margin-large-top uk-margin-medium-bottom">
+      <span class="uk-icon" uk-icon="icon: logo-color-dark; ratio: 0.7"></span>
+    </p>
+
+    <form [formGroup]="form">
+      <div class="uk-card uk-card-primary uk-card-body uk-box-shadow-small">
+        <h3 class="uk-card-title">Autentique-se</h3>
+        <div class="uk-margin">
+          <input
+            class="uk-input uk-form-large"
+            formControlName="username"
+            type="text"
+            placeholder="CPF"
+            [ngClass]=" {'uk-form-danger': ( !form.controls.username.valid &&                                   <
+                        !form.controls.username.pristine)}"
+          />
+          <
+        </div>
+        <div class="uk-margin">
+          <input
+            class="uk-input uk-form-large"
+            formControlName="password"
+            type="password"
+            placeholder="Senha"
+            [ngClass]=" {'uk-form-danger': ( !form.controls.password.valid &&                                   <
+                        !form.controls.password.pristine)}"
+          />
+          <
+        </div>
+        <div class="uk-margin uk-text-right">
+          <button class="uk-button uk-button-default" [disabled]="form.invalid">
+            Entrar
+          </button>
+          <
+        </div>
+      </div>
+    </form>
+
+    <p class="uk-text-center">
+      <a
+        [routerLink]="['/signup']"
+        class="uk-button uk-width-1-1 uk-button-large uk-button-primary uk-margin-small-bottom"
+      >
+        Quero me cadastrar
+      </a>
+      <br />
+      <a [routerLink]="['/reset-password']" class="uk-button uk-button-link">
+        Esqueci minha senha
+      </a>
+    </p>
+  </div>
+</div>
+```
+
+styles.css
+
+```css
+.uk-form-danger {
+  border: 2px solid #ff0000 !important;
+}
+button:disabled {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+```
+
+</details>
+
 <!--
 <details>
   <summary></summary>
