@@ -1514,6 +1514,183 @@ export class LoginPageComponent implements OnInit {
 
 </details>
 
+<details>
+  <summary>Add Loading</summary>
+
+wt
+
+```ps
+ng g c components/shared/loading
+```
+
+```
+src/app/
+    components/shared/
+        loading/
+            loading.component.html
+    pages/
+        account/
+            login-page/
+                login-page.component.html
+                login-page.component.ts
+```
+
+loading.component.html
+
+```html
+<div class="uk-width-1-1 uk-text-center">
+  <br /><br />
+  <br /><br />
+  <div uk-spinner="ratio: 3"></div>
+  <br /><br />
+  <br /><br />
+  <br /><br />
+  <br /><br />
+</div>
+```
+
+login-page.component.ts
+
+```ts
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DataService } from 'src/app/services/data.service';
+
+@Component({
+    selector: 'app-login-page',
+    templateUrl: './login-page.component.html'
+})
+export class LoginPageComponent implements OnInit {
+
+public form: FormGroup;
+public busy = false;                                                                <
+
+constructor(
+    private service: DataService,
+    private fb: FormBuilder
+) {
+    this.form = this.fb.group({
+        username: ['', Validators.compose([
+            Validators.minLength(11),
+            Validators.maxLength(11),
+            Validators.required
+        ])],
+        password: ['', Validators.compose([
+            Validators.minLength(6),
+            Validators.maxLength(20),
+            Validators.required
+        ])]
+    });
+}
+
+ngOnInit(): void {
+    const token = localStorage.getItem('petshop.token');
+    if (token) {
+        this.busy = true;                                                           <
+        this
+            .service
+            .refreshToken(null)
+            .subscribe(
+            (data: any) => {
+                console.log(data);
+                localStorage.setItem('petshop.token', data.token);
+                this.busy = false;                                                  <
+            },
+            (err) => {
+                localStorage.clear;
+                this.busy = false;                                                  <
+            }
+            );
+    }
+}
+
+submit() {
+    this.busy = true;                                                               <
+    this
+        .service
+        .authenticate(this.form.value)
+        .subscribe(
+            (data: any) => {
+                console.log(data);
+                localStorage.setItem('petshop.token', data.token);
+                this.busy = false;                                                  <
+            },
+            (err) => {
+                console.log(err);
+                this.busy = false;                                                  <
+            }
+        );
+    }
+}
+```
+
+login-page.component.html
+
+```html
+<div class="uk-flex-center" uk-grid>
+  <!-- 1/3 tela + mobile -->
+  <div class="uk-width-1-4@m">
+    <p class="uk-text-center uk-margin-large-top uk-margin-medium-bottom">
+      <span class="uk-icon" uk-icon="icon: logo-color-dark; ratio: 0.7"></span>
+    </p>
+
+    <app-loading *ngIf="busy"></app-loading> <
+
+    <form [formGroup]="form" *ngIf="!busy">
+      <
+      <div class="uk-card uk-card-primary uk-card-body uk-box-shadow-small">
+        <h3 class="uk-card-title">Autentique-se</h3>
+        <div class="uk-margin">
+          <input
+            class="uk-input uk-form-large"
+            formControlName="username"
+            type="text"
+            placeholder="CPF"
+            [ngClass]=" {'uk-form-danger': ( !form.controls.username.valid &&
+                        !form.controls.username.pristine)}"
+          />
+        </div>
+        <div class="uk-margin">
+          <input
+            class="uk-input uk-form-large"
+            formControlName="password"
+            type="password"
+            placeholder="Senha"
+            [ngClass]=" {'uk-form-danger': ( !form.controls.password.valid &&
+                        !form.controls.password.pristine)}"
+          />
+        </div>
+        <div class="uk-margin uk-text-right">
+          <button
+            class="uk-button uk-button-default"
+            [disabled]="form.invalid"
+            (click)="submit()"
+          >
+            Entrar
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <p class="uk-text-center" *ngIf="!busy">
+      <
+      <a
+        [routerLink]="['/signup']"
+        class="uk-button uk-width-1-1 uk-button-large uk-button-primary uk-margin-small-bottom"
+      >
+        Quero me cadastrar
+      </a>
+      <br />
+      <a [routerLink]="['/reset-password']" class="uk-button uk-button-link">
+        Esqueci minha senha
+      </a>
+    </p>
+  </div>
+</div>
+```
+
+</details>
+
 <!--
 <details>
   <summary></summary>
