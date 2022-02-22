@@ -30,3 +30,121 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 </details>
+
+<details>
+  <summary>Organizing the Project</summary>
+  
+Folders
+  [+] New
+  [m] Move
+
+```ps
+src/app/	
+    navbar/
+    pages/							[+]
+        account/					[+]
+            login-page/				[m]
+            pets-page/				[m]
+            reset-password-page/	[m]
+            signup-page/			[m]
+
+        store/						[+]
+            cart-page/				[m]
+            products-page/			[m]	
+```
+  
+Delete from the pages and navbar in /app
+    *specs
+    *css (empty) 	< 	adjust *ts
+
+```
+src/app/
+    app.module.ts	<	adjust the imports
+```
+
+wt
+```ps    
+  ng build  
+```
+    
+</details>
+
+<details>
+  <summary>Master Pages</summary>
+
+```    
+src/app/
+    app.component.html			Delete
+    app.component.ts
+    app-routing.module.ts		
+    pages/
+        master/					Create Folder
+            frame.page.ts		Create File
+```
+    
+app.component.ts
+```ts
+import { Component } from '@angular/core';
+@Component({
+  selector: 'app-root',
+  template: '<router-outlet></router-outlet>'					< change TemplateUrl to Template
+})
+export class AppComponent {
+                                                                < remove title
+}
+```
+    
+app-routing.module.ts
+```ts
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { LoginPageComponent } from './pages/account/login-page/login-page.component';
+
+const routes: Routes = [
+  {
+    path: 'login',								<
+    component: LoginPageComponent				<
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+```
+    
+frame.page.ts
+```ts
+import { Component } from '@angular/core';
+
+@Component({
+    selector: 'app-frame-page',
+    template: '<app-navbar></app-navbar><router-outlet></router-outlet>'			< 
+})
+export class FramePageComponent {
+}
+```    
+</details>
+
+<!--
+<details>
+  <summary></summary>
+</details>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
