@@ -891,6 +891,65 @@ product-card.component.html
 
 </details>
 
+<details>
+    <summary>Adjusting the Product Grid</summary>
+
+```
+src/app/
+    components/store/product-card/
+        product-card.component.html
+    pages/store/products-page/
+        products-page.component.html
+```
+
+product-card.component.html
+
+```html
+<div class="uk-card uk-card-default">
+  <
+  <div class="uk-card-media-top uk-text-center">
+    <
+    <img
+      src="{{ product.image[0] }}"
+      height="150"
+      width="150"
+      class="uk-margin-small-top uk-border-circle"
+      alt=""
+    />
+    <
+  </div>
+  <div>
+    <div class="uk-card-body">
+      <h3 class="uk-card-title">{{ product.price }}</h3>
+      <p style="height:50px;">{{ product.title }}</p>
+      <
+      <button class="uk-button uk-button-default">
+        <span class="uk-icon uk-margin-small-right"></span>
+        Adicionar
+      </button>
+    </div>
+  </div>
+</div>
+```
+
+products-page.component.html
+
+```html
+<div class="uk-container">
+  <div class="uk-grid uk-margin-small-top">
+    <div
+      class="uk-width-1-3 uk-margin-small-bottom"
+      *ngFor="let product of products$ | async"
+    >
+      <
+      <app-product-card [product]="product"></app-product-card>
+    </div>
+  </div>
+</div>
+```
+
+</details>
+
 <!--
 <details>
   <summary></summary>
