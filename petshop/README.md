@@ -39,7 +39,7 @@ Folders
   [m] Move
 
 ```ps
-src/app/	
+src/app/
     navbar/
     pages/							[+]
         account/					[+]
@@ -50,12 +50,12 @@ src/app/
 
         store/						[+]
             cart-page/				[m]
-            products-page/			[m]	
+            products-page/			[m]
 ```
-  
+
 Delete from the pages and navbar in /app
-    *specs
-    *css (empty) 	< 	adjust *ts
+*specs
+*css (empty) < adjust \*ts
 
 ```
 src/app/
@@ -63,26 +63,28 @@ src/app/
 ```
 
 wt
-```ps    
-  ng build  
+
+```ps
+  ng build
 ```
-    
+
 </details>
 
 <details>
   <summary>Master Pages</summary>
 
-```    
+```
 src/app/
     app.component.html			Delete
     app.component.ts
-    app-routing.module.ts		
+    app-routing.module.ts
     pages/
         master/					Create Folder
             frame.page.ts		Create File
 ```
-    
+
 app.component.ts
+
 ```ts
 import { Component } from '@angular/core';
 @Component({
@@ -93,8 +95,9 @@ export class AppComponent {
                                                                 < remove title
 }
 ```
-    
+
 app-routing.module.ts
+
 ```ts
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -113,18 +116,20 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 ```
-    
+
 frame.page.ts
+
 ```ts
 import { Component } from '@angular/core';
 
 @Component({
     selector: 'app-frame-page',
-    template: '<app-navbar></app-navbar><router-outlet></router-outlet>'			< 
+    template: '<app-navbar></app-navbar><router-outlet></router-outlet>'			<
 })
 export class FramePageComponent {
 }
-```    
+```
+
 </details>
 
 <details>
@@ -153,27 +158,28 @@ import { CartPageComponent } from './pages/store/cart-page/cart-page.component';
 import { ProductsPageComponent } from './pages/store/products-page/products-page.component';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        NavbarComponent,
-        LoginPageComponent,
-        ResetPasswordPageComponent,
-        SignupPageComponent,
-        PetsPageComponent,
-        ProductsPageComponent,
-        CartPageComponent,
-        FramePageComponent										<   Add
-    ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule
-    ],
-    providers: [],
-    bootstrap: [AppComponent]
+declarations: [
+AppComponent,
+NavbarComponent,
+LoginPageComponent,
+ResetPasswordPageComponent,
+SignupPageComponent,
+PetsPageComponent,
+ProductsPageComponent,
+CartPageComponent,
+FramePageComponent < Add
+],
+imports: [
+BrowserModule,
+AppRoutingModule
+],
+providers: [],
+bootstrap: [AppComponent]
 })
 export class AppModule { }
-```
-	
+
+````
+
 app-routing.module.ts
 
 ```ts
@@ -212,9 +218,9 @@ const routes: Routes = [
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
 })
-export class AppRoutingModule { }  
-```
-                                             
+export class AppRoutingModule { }
+````
+
 </details>  
   
 <details>
@@ -231,83 +237,117 @@ src/app/
             login-page/
                 login-page.component.html
 ```
-    
+
 navbar.component.html
+
 ```html
 <div class="uk-background-primary uk-light">
-    <div class="uk-container">
-        <nav class="uk-navbar-container uk-navbar-transparent uk-margin" uk-navbar>
-            <div class="uk-navbar-left">
-                <a class="uk-navbar-item uk-logo" href="/">
-                    <span class="uk-icon uk-margin-small-right" uk-icon="icon: icon-color-light; ratio: 0.15"></span>
-                </a>
-                <ul class="uk-navbar-nav">
-                    <li><a [routerLink]="['/']" routerLinkActive="uk-text-bold">Produtos</a></li>								<
-                    <li><a [routerLink]="['/account/pets']" routerLinkActive="uk-text-bold">Meus Pets</a></li>					<
-                    <li><a href="#">Consultas</a></li>
-                </ul>
-            </div>
-            <div class="uk-navbar-right">
-                <ul class="uk-navbar-nav">
-                    <li>
-                        <a [routerLink]="['/cart']" routerLinkActive="uk-text-bold">											<
-                            <span class="uk-icon uk-margin-small-right" uk-icon="icon: cart"></span>
-                            <span class="uk-badge">0</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="uk-icon uk-margin-small-right" uk-icon="icon: user"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="uk-icon uk-margin-small-right" uk-icon="icon: sign-out"></span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-</div>	
+  <div class="uk-container">
+    <nav class="uk-navbar-container uk-navbar-transparent uk-margin" uk-navbar>
+      <div class="uk-navbar-left">
+        <a class="uk-navbar-item uk-logo" href="/">
+          <span
+            class="uk-icon uk-margin-small-right"
+            uk-icon="icon: icon-color-light; ratio: 0.15"
+          ></span>
+        </a>
+        <ul class="uk-navbar-nav">
+          <li>
+            <a [routerLink]="['/']" routerLinkActive="uk-text-bold">Produtos</a>
+          </li>
+          <
+          <li>
+            <a [routerLink]="['/account/pets']" routerLinkActive="uk-text-bold"
+              >Meus Pets</a
+            >
+          </li>
+          <
+          <li><a href="#">Consultas</a></li>
+        </ul>
+      </div>
+      <div class="uk-navbar-right">
+        <ul class="uk-navbar-nav">
+          <li>
+            <a [routerLink]="['/cart']" routerLinkActive="uk-text-bold">
+              <
+              <span
+                class="uk-icon uk-margin-small-right"
+                uk-icon="icon: cart"
+              ></span>
+              <span class="uk-badge">0</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span
+                class="uk-icon uk-margin-small-right"
+                uk-icon="icon: user"
+              ></span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span
+                class="uk-icon uk-margin-small-right"
+                uk-icon="icon: sign-out"
+              ></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
 ```
 
 login-page.component.html
+
 ```html
 <div class="uk-flex-center" uk-grid>
-    <!-- 1/3 tela + mobile -->
-    <div class="uk-width-1-4@m">
-        <p class="uk-text-center uk-margin-large-top uk-margin-medium-bottom">
-            <span class="uk-icon" uk-icon="icon: logo-color-dark; ratio: 0.7"></span>
-        </p>
+  <!-- 1/3 tela + mobile -->
+  <div class="uk-width-1-4@m">
+    <p class="uk-text-center uk-margin-large-top uk-margin-medium-bottom">
+      <span class="uk-icon" uk-icon="icon: logo-color-dark; ratio: 0.7"></span>
+    </p>
 
-        <div class="uk-card uk-card-primary uk-card-body uk-box-shadow-small">
-            <h3 class="uk-card-title">Autentique-se</h3>
-            <div class="uk-margin">
-                <input class="uk-input uk-form-large" type="email" placeholder="E-mail">
-            </div>
-            <div class="uk-margin">
-                <input class="uk-input uk-form-large" type="password" placeholder="Senha">
-            </div>
-            <div class="uk-margin uk-text-right">
-                <a href="/" class="uk-button uk-button-default">Entrar</a>
-            </div>
-        </div>
-
-        <p class="uk-text-center">
-            <a [routerLink]="['/signup']"																			<
-                class="uk-button uk-width-1-1 uk-button-large uk-button-primary uk-margin-small-bottom">
-                Quero me cadastrar
-            </a>
-            <br>
-            <a [routerLink]="['/reset-password']" class="uk-button uk-button-link">									<
-                Esqueci minha senha
-            </a>
-        </p>
+    <div class="uk-card uk-card-primary uk-card-body uk-box-shadow-small">
+      <h3 class="uk-card-title">Autentique-se</h3>
+      <div class="uk-margin">
+        <input
+          class="uk-input uk-form-large"
+          type="email"
+          placeholder="E-mail"
+        />
+      </div>
+      <div class="uk-margin">
+        <input
+          class="uk-input uk-form-large"
+          type="password"
+          placeholder="Senha"
+        />
+      </div>
+      <div class="uk-margin uk-text-right">
+        <a href="/" class="uk-button uk-button-default">Entrar</a>
+      </div>
     </div>
-</div>  
+
+    <p class="uk-text-center">
+      <a
+        [routerLink]="['/signup']"
+        <
+        class="uk-button uk-width-1-1 uk-button-large uk-button-primary uk-margin-small-bottom"
+      >
+        Quero me cadastrar
+      </a>
+      <br />
+      <a [routerLink]="['/reset-password']" class="uk-button uk-button-link">
+        < Esqueci minha senha
+      </a>
+    </p>
+  </div>
+</div>
 ```
-  
+
 </details>  
   
 <details>
@@ -328,31 +368,107 @@ Tools/ Import all environment from files (7181.mockon.1.4.0.json)
 Start Server
 
 > Postman
-    
+
 New Workspace: PetStore
-    
-GET		localhost:3000/v1/products		SEND    
-    
-</details>  
-  
+
+GET localhost:3000/v1/products SEND
+
+</details>
+
+<details>
+    <summary>Services</summary>
+
+```
+src/app/
+    pages/
+        store/
+            products-page/
+                products-page.component.ts
+    services/                                   < New Folder
+        data.service.ts                         < New File
+    app.module.ts
+```
+
+app.module.ts
+
+```ts
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';             < Import
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { LoginPageComponent } from './pages/account/login-page/login-page.component';
+import { PetsPageComponent } from './pages/account/pets-page/pets-page.component';
+import { ResetPasswordPageComponent } from './pages/account/reset-password-page/reset-password-page.component';
+import { SignupPageComponent } from './pages/account/signup-page/signup-page.component';
+import { FramePageComponent } from './pages/master/frame.page';
+import { CartPageComponent } from './pages/store/cart-page/cart-page.component';
+import { ProductsPageComponent } from './pages/store/products-page/products-page.component';
+
+@NgModule({
+    declarations: [
+        AppComponent,
+        NavbarComponent,
+        LoginPageComponent,
+        ResetPasswordPageComponent,
+        SignupPageComponent,
+        PetsPageComponent,
+        ProductsPageComponent,
+        CartPageComponent,
+        FramePageComponent
+    ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,               < Import
+        AppRoutingModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+data.service.ts
+
+```ts
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+
+@Injectable({
+  providedIn: "root",
+})
+export class DataService {
+  constructor(private http: HttpClient) {}
+
+  getProducts() {
+    return this.http.get<any[]>("http://localhost:3000/v1/products");
+  }
+}
+```
+
+products-page.component.ts
+
+```ts
+import { Component, OnInit } from "@angular/core";
+import { DataService } from "src/app/services/data.service";
+
+@Component({
+  selector: "app-products-page",
+  templateUrl: "./products-page.component.html",
+})
+export class ProductsPageComponent implements OnInit {
+  constructor(data: DataService) {}
+
+  ngOnInit(): void {}
+}
+```
+
+</details>
+
 <!--
 <details>
   <summary></summary>
 </details>
 -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
