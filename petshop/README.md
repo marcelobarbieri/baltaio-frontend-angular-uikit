@@ -1389,6 +1389,131 @@ login-page.component.html
 
 </details>
 
+<details>
+  <summary>Refresh Token</summary>
+
+```
+src/app/
+    pages/
+        account/
+            login-page/
+                login-page.component.ts
+    services/
+        data.service.ts
+```
+
+data.service.ts
+
+```ts
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Product } from '../models/product.model';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class DataService {
+
+    public url = 'http://localhost:3000/v1';
+
+    constructor(private http: HttpClient) { }
+
+    public composeHeaders() {                                                                   <
+        const token = localStorage.getItem('petshop.token') || '';                              <
+        //const headers = new HttpHeaders().set('x-access-token',token);                        <
+        const headers = new HttpHeaders().set('Authorization', `bearer ${token}`);              <
+        return headers;                                                                         <
+    }
+
+    getProducts() {
+        return this.http.get<Product[]>(`${this.url}/products`);
+    }
+
+    authenticate(data: any) {                                                                   <
+        return this.http.post(`${this.url}/accounts/authenticate`, data);                       <
+    }                                                                                           <
+
+    refreshToken(data: any) {                                                                   <
+        return this.http.post(                                                                  <
+            `${this.url}/accounts/refresh-token`,                                               <
+            null,                                                                               <
+            { headers: this.composeHeaders() }                                                  <
+        );                                                                                      <
+    }
+}
+```
+
+login-page.component.ts
+
+```ts
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DataService } from 'src/app/services/data.service';
+
+@Component({
+    selector: 'app-login-page',
+    templateUrl: './login-page.component.html'
+})
+export class LoginPageComponent implements OnInit {
+
+    public form: FormGroup;
+
+    constructor(
+        private service: DataService,
+        private fb: FormBuilder
+    ) {
+        this.form = this.fb.group({
+        username: ['', Validators.compose([
+            Validators.minLength(11),
+            Validators.maxLength(11),
+            Validators.required
+        ])],
+        password: ['', Validators.compose([
+            Validators.minLength(6),
+            Validators.maxLength(20),
+            Validators.required
+        ])]
+        });
+    }
+
+    ngOnInit(): void {
+        const token = localStorage.getItem('petshop.token');                <
+        if (token) {                                                        <
+        console.log('Autenticando...');                                     <
+        this                                                                <
+            .service                                                        <
+            .refreshToken(null)                                             <
+            .subscribe(                                                     <
+            (data: any) => {                                                <
+                console.log(data);                                          <
+                localStorage.setItem('petshop.token', data.token);          <
+            },                                                              <
+            (err) => {                                                      <
+                localStorage.clear;                                         <
+            }                                                               <
+            );                                                              <
+        }
+    }
+
+    submit() {
+        this
+        .service
+        .authenticate(this.form.value)
+        .subscribe(
+            (data: any) => {
+                console.log(data);
+                localStorage.setItem('petshop.token', data.token);
+            },
+            (err) => {
+                console.log(err);
+            }
+        );
+    }
+}
+```
+
+</details>
+
 <!--
 <details>
   <summary></summary>
