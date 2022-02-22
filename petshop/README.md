@@ -1263,6 +1263,132 @@ button:disabled {
 
 </details>
 
+<details>
+  <summary>Storing the Token</summary>
+
+```
+src/app/pages/account/login-page/
+    login-page.component.ts
+    login-page.component.html
+```
+
+login-page.component.ts
+
+```ts
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DataService } from 'src/app/services/data.service';
+
+@Component({
+    selector: 'app-login-page',
+    templateUrl: './login-page.component.html'
+})
+export class LoginPageComponent implements OnInit {
+
+    public form: FormGroup;
+
+    constructor(
+        private service: DataService,
+        private fb: FormBuilder
+    ) {
+        this.form = this.fb.group({
+        username: ['', Validators.compose([
+            Validators.minLength(11),
+            Validators.maxLength(11),
+            Validators.required
+        ])],
+        password: ['', Validators.compose([
+            Validators.minLength(6),
+            Validators.maxLength(20),
+            Validators.required
+        ])]
+        });
+    }
+
+    ngOnInit(): void {
+    }
+
+    submit() {                                                          <
+        this
+        .service
+        .authenticate(this.form.value)
+        .subscribe(
+            (data: any) => {
+                console.log(data);
+                localStorage.setItem('petshop.item', data.token);
+            },
+            (err) => {
+                console.log(err);
+            }
+        );
+    }
+}
+```
+
+login-page.component.html
+
+```html
+<div class="uk-flex-center" uk-grid>
+  <!-- 1/3 tela + mobile -->
+  <div class="uk-width-1-4@m">
+    <p class="uk-text-center uk-margin-large-top uk-margin-medium-bottom">
+      <span class="uk-icon" uk-icon="icon: logo-color-dark; ratio: 0.7"></span>
+    </p>
+
+    <form [formGroup]="form">
+      <div class="uk-card uk-card-primary uk-card-body uk-box-shadow-small">
+        <h3 class="uk-card-title">Autentique-se</h3>
+        <div class="uk-margin">
+          <input
+            class="uk-input uk-form-large"
+            formControlName="username"
+            type="text"
+            placeholder="CPF"
+            [ngClass]=" {'uk-form-danger': ( !form.controls.username.valid &&
+                        !form.controls.username.pristine)}"
+          />
+        </div>
+        <div class="uk-margin">
+          <input
+            class="uk-input uk-form-large"
+            formControlName="password"
+            type="password"
+            placeholder="Senha"
+            [ngClass]=" {'uk-form-danger': ( !form.controls.password.valid &&
+                        !form.controls.password.pristine)}"
+          />
+        </div>
+        <div class="uk-margin uk-text-right">
+          <button
+            class="uk-button uk-button-default"
+            [disabled]="form.invalid"
+            (click)="submit()"
+          >
+            Entrar
+          </button>
+          <
+        </div>
+      </div>
+    </form>
+
+    <p class="uk-text-center">
+      <a
+        [routerLink]="['/signup']"
+        class="uk-button uk-width-1-1 uk-button-large uk-button-primary uk-margin-small-bottom"
+      >
+        Quero me cadastrar
+      </a>
+      <br />
+      <a [routerLink]="['/reset-password']" class="uk-button uk-button-link">
+        Esqueci minha senha
+      </a>
+    </p>
+  </div>
+</div>
+```
+
+</details>
+
 <!--
 <details>
   <summary></summary>
