@@ -761,6 +761,29 @@ products-page.component.html
 
 </details>
 
+<details>
+    <summary>Creating the Product´s Model</summary>
+
+```
+src/app/models/
+    product.model.ts
+```
+
+product.model.ts
+
+```ts
+export class Product {
+  public _id: string;
+  public title: string;
+  public category: string;
+  public description: string;
+  public price: number;
+  public image: string;
+}
+```
+
+</details>
+
 <!--
 <details>
   <summary></summary>
