@@ -217,6 +217,99 @@ export class AppRoutingModule { }
                                              
 </details>  
   
+<details>
+  <summary>Active Link</summary>
+
+Highlights the triggered link
+
+```
+src/app/
+    navbar/
+        navbar.component.html
+    pages/
+        account/
+            login-page/
+                login-page.component.html
+```
+    
+navbar.component.html
+```html
+<div class="uk-background-primary uk-light">
+    <div class="uk-container">
+        <nav class="uk-navbar-container uk-navbar-transparent uk-margin" uk-navbar>
+            <div class="uk-navbar-left">
+                <a class="uk-navbar-item uk-logo" href="/">
+                    <span class="uk-icon uk-margin-small-right" uk-icon="icon: icon-color-light; ratio: 0.15"></span>
+                </a>
+                <ul class="uk-navbar-nav">
+                    <li><a [routerLink]="['/']" routerLinkActive="uk-text-bold">Produtos</a></li>								<
+                    <li><a [routerLink]="['/account/pets']" routerLinkActive="uk-text-bold">Meus Pets</a></li>					<
+                    <li><a href="#">Consultas</a></li>
+                </ul>
+            </div>
+            <div class="uk-navbar-right">
+                <ul class="uk-navbar-nav">
+                    <li>
+                        <a [routerLink]="['/cart']" routerLinkActive="uk-text-bold">											<
+                            <span class="uk-icon uk-margin-small-right" uk-icon="icon: cart"></span>
+                            <span class="uk-badge">0</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="uk-icon uk-margin-small-right" uk-icon="icon: user"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="uk-icon uk-margin-small-right" uk-icon="icon: sign-out"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>	
+```
+
+login-page.component.html
+```html
+<div class="uk-flex-center" uk-grid>
+    <!-- 1/3 tela + mobile -->
+    <div class="uk-width-1-4@m">
+        <p class="uk-text-center uk-margin-large-top uk-margin-medium-bottom">
+            <span class="uk-icon" uk-icon="icon: logo-color-dark; ratio: 0.7"></span>
+        </p>
+
+        <div class="uk-card uk-card-primary uk-card-body uk-box-shadow-small">
+            <h3 class="uk-card-title">Autentique-se</h3>
+            <div class="uk-margin">
+                <input class="uk-input uk-form-large" type="email" placeholder="E-mail">
+            </div>
+            <div class="uk-margin">
+                <input class="uk-input uk-form-large" type="password" placeholder="Senha">
+            </div>
+            <div class="uk-margin uk-text-right">
+                <a href="/" class="uk-button uk-button-default">Entrar</a>
+            </div>
+        </div>
+
+        <p class="uk-text-center">
+            <a [routerLink]="['/signup']"																			<
+                class="uk-button uk-width-1-1 uk-button-large uk-button-primary uk-margin-small-bottom">
+                Quero me cadastrar
+            </a>
+            <br>
+            <a [routerLink]="['/reset-password']" class="uk-button uk-button-link">									<
+                Esqueci minha senha
+            </a>
+        </p>
+    </div>
+</div>  
+```
+  
+</details>  
+  
 <!--
 <details>
   <summary></summary>
