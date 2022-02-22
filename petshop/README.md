@@ -467,6 +467,114 @@ export class ProductsPageComponent implements OnInit {
 
 </details>
 
+<details>
+  <summary>Assynchronous Lists</summary>
+
+```
+tsconfig.json
+src/app/
+    pages/store/products-page/
+        products-page.component.html
+        products-page.component.ts
+```
+
+tsconfig.json
+
+```json
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "baseUrl": "./",
+        "outDir": "./dist/out-tsc",
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "sourceMap": true,
+        "declaration": false,
+        "downlevelIteration": true,
+        "experimentalDecorators": true,
+        "moduleResolution": "node",
+        "importHelpers": true,
+        "target": "es2017",
+        "module": "es2020",
+        "lib": [
+        "es2018",
+        "dom"
+        ],
+        "strictPropertyInitialization": false               <
+    },
+    "angularCompilerOptions": {
+        "enableI18nLegacyMessageIdFormat": false,
+        "strictInjectionParameters": true,
+        "strictInputAccessModifiers": true,
+        "strictTemplates": true
+    }
+}
+```
+
+products-page.component.ts
+
+```ts
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';                                      <
+import { DataService } from 'src/app/services/data.service';
+
+@Component({
+    selector: 'app-products-page',
+    templateUrl: './products-page.component.html',
+})
+export class ProductsPageComponent implements OnInit {
+
+    public products$: Observable<any[]>;                                <
+
+    constructor(private data: DataService) {                            <
+    }
+
+    ngOnInit(): void {
+        this.products$ = this.data.getProducts();                       <
+    }
+}
+```
+
+products-page.component.html
+
+```html
+<div class="uk-container">
+  <div class="uk-grid uk-margin-small-top">
+    <div
+      class="uk-width-1-2 uk-margin-small-bottom"
+      *ngFor="let product of products$ | async"
+    >
+      <
+      <div
+        class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin"
+        uk-grid
+      >
+        <div class="uk-card-media-left uk-cover-container">
+          <img src="{{ product.images[0] }}" alt="" uk-cover /> <
+        </div>
+        <div>
+          <div class="uk-card-body">
+            <h3 class="uk-card-title">{{ product.price }}</h3>
+            <
+            <p>{{ product.title }}</p>
+            <
+            <button class="uk-button uk-button-default">
+              <span class="uk-icon uk-margin-small-right"></span>
+              Adicionar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+</details>
+
 <!--
 <details>
   <summary></summary>
