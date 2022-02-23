@@ -2132,6 +2132,226 @@ submit() {
 
 </details>
 
+<details>
+  <summary>Secutiry Util</summary>
+
+```
+src/app/
+    app.module.ts
+    models/
+        user.model.ts
+    pages/
+        account/
+            login-page/
+                login-page.component.ts
+    utils/
+        security.util.cs
+```
+
+security.util.ts
+
+```ts
+import { User } from "src/app/models/user.model";
+
+export class Security {
+  public static set(user: User, token: string) {
+    const data = JSON.stringify(user);
+
+    localStorage.setItem("petshopuser", btoa(data));
+    localStorage.setItem("petshoptoken", token);
+  }
+
+  public static setUser(user: User) {
+    const data = JSON.stringify(user);
+    localStorage.setItem("petshopuser", btoa(data));
+  }
+
+  public static setToken(token: string) {
+    localStorage.setItem("petshoptoken", token);
+  }
+
+  public static getUser(): User | null {
+    const data = localStorage.getItem("petshopuser");
+    if (data) {
+      return JSON.parse(atob(data));
+    } else {
+      return null;
+    }
+  }
+
+  public static getToken(): string | null {
+    const data = localStorage.getItem("petshoptoken");
+    if (data) {
+      return data;
+    } else {
+      return null;
+    }
+  }
+
+  public static hasToken(): boolean {
+    if (this.getToken()) return true;
+    else return false;
+  }
+
+  public static clear() {
+    localStorage.removeItem("petshopuser");
+    localStorage.removeItem("petshoptoken");
+  }
+}
+```
+
+user.model.ts
+
+```ts
+export class User {
+  constructor(
+    public _id: string,
+    public name: string,
+    public document: string,
+    public email: string
+  ) {}
+}
+```
+
+login-page.component.ts
+
+```ts
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { DataService } from 'src/app/services/data.service';
+import { CustomValidator } from 'src/app/validators/custom.validator';
+import { User } from "src/app/models/user.model";
+import { Security } from "src/app/utils/security.util";                             <
+
+
+@Component({
+    selector: 'app-login-page',
+    templateUrl: './login-page.component.html'
+})
+export class LoginPageComponent implements OnInit {
+    public form: FormGroup;
+    public busy = false;
+
+    constructor(
+        private router: Router,
+        private service: DataService,
+        private fb: FormBuilder
+    ) {
+        this.form = this.fb.group({
+        username: ['', Validators.compose([
+            Validators.minLength(14),
+            Validators.maxLength(14),
+            Validators.required,
+            CustomValidator.isCpf()
+        ])],
+        password: ['', Validators.compose([
+            Validators.minLength(6),
+            Validators.maxLength(20),
+            Validators.required
+        ])]
+        });
+    }
+
+    ngOnInit(): void {
+        const token = Security.getToken();                                          <
+        if (token) {
+            this.busy = true;
+            this
+                .service
+                .refreshToken(null)
+                .subscribe(
+                    (data: any) => {
+                        this.busy = false;
+                        this.setUser(data.customer, data.token);                    <
+                    },
+                    (err) => {
+                        localStorage.clear;
+                        this.busy = false;
+                    }
+                );
+
+        }
+    }
+
+    submit() {
+        this.busy = true;
+        this
+            .service
+            .authenticate(this.form.value)
+            .subscribe(
+                (data: any) => {
+                    this.busy = false;
+                    this.setUser(data.customer, data.token);                        <
+                },
+                (err) => {
+                    console.log(err);
+                    this.busy = false;
+                }
+            );
+
+    }
+
+    setUser(user: User, token: string) {
+        Security.set(user, token);                                                  <
+        this.router.navigate(['/']);
+    }
+}
+```
+
+app.module.ts
+
+```ts
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { HttpClientModule } from "@angular/common/http";
+
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { NavbarComponent } from "./components/shared/navbar/navbar.component";
+import { LoginPageComponent } from "./pages/account/login-page/login-page.component";
+import { PetsPageComponent } from "./pages/account/pets-page/pets-page.component";
+import { ResetPasswordPageComponent } from "./pages/account/reset-password-page/reset-password-page.component";
+import { SignupPageComponent } from "./pages/account/signup-page/signup-page.component";
+import { FramePageComponent } from "./pages/master/frame.page";
+import { CartPageComponent } from "./pages/store/cart-page/cart-page.component";
+import { ProductsPageComponent } from "./pages/store/products-page/products-page.component";
+import { ProductCardComponent } from "./components/store/product-card/product-card.component";
+import { ReactiveFormsModule } from "@angular/forms";
+import { LoadingComponent } from "./components/shared/loading/loading.component";
+import { MaskDirective } from "./directives/mask.directive";
+import { CustomValidator } from "./validators/custom.validator";
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    LoginPageComponent,
+    ResetPasswordPageComponent,
+    SignupPageComponent,
+    PetsPageComponent,
+    ProductsPageComponent,
+    CartPageComponent,
+    FramePageComponent,
+    ProductCardComponent,
+    LoadingComponent,
+    MaskDirective,
+  ],
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    AppRoutingModule,
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+```
+
+</details>
+
 <!--
 <details>
   <summary></summary>
