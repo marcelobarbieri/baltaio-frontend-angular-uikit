@@ -2686,7 +2686,49 @@ exports: [RouterModule]
 })
 export class AppRoutingModule { }
 ```
-                                                                                                       
+
+</details>
+
+<details>
+  <summary>Toastr</summary>
+
+https://www.npmjs.com/package/ngx-toastr
+
+```ps
+npm install ngx-toastr --save
+npm install @angular/animations --save
+```
+
+New file
+
+```
+src/assets/css/toastr.css
+```
+
+Update de index.html to add de stylesheet
+src/index.html
+
+```html
+<link rel="stylesheet" href="assets/css/toastr.css" />
+```
+
+Update de app.module.ts to add de imports
+src/app/app.module.ts
+
+```ts
+...
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ToastrModule } from "ngx-toastr";
+...
+@NgModule({
+  imports: [
+    ...
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
+  ],
+  ...
+```
+
 </details>
 
 <!--
