@@ -2133,7 +2133,7 @@ submit() {
 </details>
 
 <details>
-  <summary>Secutiry Util</summary>
+  <summary>Security Util</summary>
 
 ```
 src/app/
@@ -2348,6 +2348,101 @@ import { CustomValidator } from "./validators/custom.validator";
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+```
+
+</details>
+
+<details>
+  <summary>Display Logged Users</summary>
+
+```
+src/app/components/shared/
+    navbar/
+        navbar.component.html
+        navbar.component.ts
+```
+
+navbar.component.ts
+
+```ts
+import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user.model';                       <
+import { Security } from 'src/app/utils/security.util';                 <
+
+@Component({
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html'
+})
+export class NavbarComponent implements OnInit {
+
+    public user: User | null;                                           <
+
+    constructor() { }
+
+    ngOnInit(): void {
+        this.user = Security.getUser();                                 <
+    }
+}
+```
+
+navbar.component.html
+
+```html
+<div class="uk-background-primary uk-light">
+  <div class="uk-container">
+    <nav class="uk-navbar-container uk-navbar-transparent uk-margin" uk-navbar>
+      <div class="uk-navbar-left">
+        <a class="uk-navbar-item uk-logo" href="/">
+          <span
+            class="uk-icon uk-margin-small-right"
+            uk-icon="icon: icon-color-light; ratio: 0.15"
+          ></span>
+        </a>
+        <ul class="uk-navbar-nav">
+          <li>
+            <a [routerLink]="['/']" routerLinkActive="uk-text-bold">Produtos</a>
+          </li>
+          <li>
+            <a [routerLink]="['/account/pets']" routerLinkActive="uk-text-bold"
+              >Meus Pets</a
+            >
+          </li>
+          <li><a href="#">Consultas</a></li>
+        </ul>
+      </div>
+      <div class="uk-navbar-right">
+        <ul class="uk-navbar-nav">
+          <li>
+            <a [routerLink]="['/cart']" routerLinkActive="uk-text-bold">
+              <span
+                class="uk-icon uk-margin-small-right"
+                uk-icon="icon: cart"
+              ></span>
+              <span class="uk-badge">0</span>
+            </a>
+          </li>
+          <li>
+            <a href="/account">
+              <span
+                class="uk-icon uk-margin-small-right"
+                uk-icon="icon: user"
+              ></span>
+              {{ user?.name }} <
+            </a>
+          </li>
+          <li>
+            <a href="/login">
+              <span
+                class="uk-icon uk-margin-small-right"
+                uk-icon="icon: sign-out"
+              ></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
 ```
 
 </details>
