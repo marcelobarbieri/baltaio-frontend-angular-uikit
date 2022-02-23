@@ -2687,6 +2687,8 @@ exports: [RouterModule]
 export class AppRoutingModule { }
 ```
 
+https://github.com/marcelobarbieri/baltaio-frontend-angular-uikit/blob/main/petshop/src/app/pages/store/cart-page/cart-page.component.html#:~:text=%3Cnav%20class%3D%22uk%2Dnavbar%2Dcontainer%22%20uk%2Dnavbar%3E                                                                                                       
+                                                                                                       
 </details>
 
 <!--
