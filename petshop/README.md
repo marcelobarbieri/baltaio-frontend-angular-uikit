@@ -2550,6 +2550,38 @@ navbar.component.html
 
 </details>
 
+<details>
+  <summary>Auth Service</summary>
+
+```
+src/app/services/
+    auth.service.ts
+```
+
+auth.service.ts
+
+```ts
+import { Injectable } from "@angular/core";
+import { CanActivate, Router } from "@angular/router";
+import { Security } from "../utils/security.util";
+
+@Injectable()
+export class AuthService implements CanActivate {
+  constructor(private router: Router) {}
+
+  canActivate() {
+    const token = Security.getToken();
+    if (!token) {
+      this.router.navigate(["/login"]);
+      return false;
+    }
+    return true;
+  }
+}
+```
+
+</details>
+
 <!--
 <details>
   <summary></summary>
