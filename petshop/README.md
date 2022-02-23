@@ -2699,13 +2699,13 @@ npm install ngx-toastr --save
 npm install @angular/animations --save
 ```
 
-New file:
+> New file:
 
 ```
 src/assets/css/toastr.css
 ```
 
-Update de index.html to add de stylesheet
+> Update de index.html to add de stylesheet:
 
 src/index.html
 
@@ -2713,7 +2713,7 @@ src/index.html
 <link rel="stylesheet" href="assets/css/toastr.css" />
 ```
 
-Update de app.module.ts to add de imports:
+> Update de app.module.ts to add de imports:
 
 src/app/app.module.ts
 
