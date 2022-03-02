@@ -2744,9 +2744,9 @@ src/app/
     data.service.ts
 ```
 
-- adding properties, dependency injection, constructor content and creating submit methos
-
 signup-page.component.ts
+
+- adding properties, dependency injection, constructor content and creating submit method
 
 ```ts
 import { Component, OnInit } from "@angular/core";
@@ -2827,9 +2827,9 @@ export class SignupPageComponent implements OnInit {
 }
 ```
 
-- adding the method create
-
 data.service.ts
+
+- adding the method create
 
 ```ts
 ...
