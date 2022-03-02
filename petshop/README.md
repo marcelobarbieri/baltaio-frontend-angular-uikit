@@ -2733,6 +2733,119 @@ import { ToastrModule } from "ngx-toastr";
 
 </details>
 
+<details>
+  <summary>Customer Maintenance - Part 1</summary>
+
+```
+src/app/
+  pages/account/signup-page
+    signup-page.component.ts
+  services/
+    data.service.ts
+```
+
+- adding properties, dependency injection, constructor content and creating submit methos
+
+signup-page.component.ts
+
+```ts
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
+import { DataService } from "src/app/services/data.service";
+import { CustomValidator } from "src/app/validators/custom.validator";
+
+@Component({
+  selector: "app-signup-page",
+  templateUrl: "./signup-page.component.html",
+})
+export class SignupPageComponent implements OnInit {
+  public form: FormGroup;
+  public busy = false;
+
+  constructor(
+    private router: Router,
+    private service: DataService,
+    private fb: FormBuilder,
+    private toastr: ToastrService
+  ) {
+    this.form = this.fb.group({
+      name: [
+        "",
+        Validators.compose([
+          Validators.minLength(3),
+          Validators.minLength(80),
+          Validators.required,
+        ]),
+      ],
+      document: [
+        "",
+        Validators.compose([
+          Validators.minLength(14),
+          Validators.minLength(14),
+          Validators.required,
+          CustomValidator.isCpf(),
+        ]),
+      ],
+      email: [
+        "",
+        Validators.compose([
+          Validators.minLength(5),
+          Validators.minLength(120),
+          Validators.required,
+          CustomValidator.EmailValidator,
+        ]),
+      ],
+      password: [
+        "",
+        Validators.compose([
+          Validators.minLength(6),
+          Validators.minLength(20),
+          Validators.required,
+        ]),
+      ],
+    });
+  }
+
+  ngOnInit(): void {}
+
+  submit() {
+    this.busy = true;
+    this.service.create(this.form.value).subscribe(
+      (data: any) => {
+        this.busy = false;
+        this.toastr.success(data.message, "Bem-vindo!");
+        this.router.navigate(["/login"]);
+      },
+      (err) => {
+        console.log(err);
+        this.busy = false;
+      }
+    );
+  }
+}
+```
+
+- adding the method create
+
+data.service.ts
+
+```ts
+...
+
+    create(data: any) {
+        return this.http.post(`${this.url}/accounts`,data);
+    }
+}
+```
+
+</details>
+
+<details>
+  <summary>Customer Maintenance - Part 2</summary>
+</details>
+
 <!--
 <details>
   <summary></summary>
