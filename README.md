@@ -2,4 +2,4 @@
 
 > [UiKit](https://github.com/marcelobarbieri/baltaio-frontend-angular-uikit/blob/main/UIKIT.md)
 
-> PetShop
+> [PetShop](https://github.com/marcelobarbieri/baltaio-frontend-angular-uikit/blob/main/petshop/README.md)
