@@ -2752,9 +2752,10 @@ signup-page.component.ts
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { ToastrService } from "ngx-toastr";
-import { DataService } from "src/app/services/data.service";
+
 import { CustomValidator } from "src/app/validators/custom.validator";
+import { DataService } from "src/app/services/data.service";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-signup-page",
@@ -2775,7 +2776,7 @@ export class SignupPageComponent implements OnInit {
         "",
         Validators.compose([
           Validators.minLength(3),
-          Validators.minLength(80),
+          Validators.maxLength(80),
           Validators.required,
         ]),
       ],
@@ -2783,7 +2784,7 @@ export class SignupPageComponent implements OnInit {
         "",
         Validators.compose([
           Validators.minLength(14),
-          Validators.minLength(14),
+          Validators.maxLength(14),
           Validators.required,
           CustomValidator.isCpf(),
         ]),
@@ -2792,7 +2793,7 @@ export class SignupPageComponent implements OnInit {
         "",
         Validators.compose([
           Validators.minLength(5),
-          Validators.minLength(120),
+          Validators.maxLength(120),
           Validators.required,
           CustomValidator.EmailValidator,
         ]),
@@ -2801,7 +2802,7 @@ export class SignupPageComponent implements OnInit {
         "",
         Validators.compose([
           Validators.minLength(6),
-          Validators.minLength(20),
+          Validators.maxLength(20),
           Validators.required,
         ]),
       ],
@@ -2833,7 +2834,6 @@ data.service.ts
 
 ```ts
 ...
-
     create(data: any) {
         return this.http.post(`${this.url}/accounts`,data);
     }
@@ -2844,6 +2844,87 @@ data.service.ts
 
 <details>
   <summary>Customer Maintenance - Part 2</summary>
+
+```
+src/app/
+  pages/account/signup-page
+    signup-page.component.html
+```
+
+signup-page.component.html
+
+- adding app-loading, formGroup, busy, inputs and submit button
+
+```html
+<div class="uk-flex-center" uk-grid>
+  <!-- 1/3 tela + mobile -->
+  <div class="uk-width-1-4@m">
+    <p class="uk-text-center uk-margin-large-top uk-margin-medium-bottom">
+      <span class="uk-icon" uk-icon="icon: logo-color-dark; ratio: 0.7"></span>
+    </p>
+
+    <app-loading *ngIf="busy"></app-loading>
+
+    <div>
+      <form [formGroup]="form" *ngIf="!busy">
+        <div class="uk-card uk-card-primary uk-card-body uk-box-shadow-small">
+          <h3 class="uk-card-title">Cadastre-se</h3>
+          <div class="uk-margin">
+            <input
+              class="uk-input uk-form-large"
+              type="text"
+              placeholder="Nome"
+              formControlName="name"
+              [ngClass]="{'uk-form-danger' : (!form.controls.name.valid && !form.controls.name.pristine)}"
+            />
+          </div>
+          <div class="uk-margin">
+            <input
+              class="uk-input uk-form-large"
+              type="text"
+              placeholder="CPF"
+              mask="###.###.###-##"
+              formControlName="document"
+              [ngClass]="{'uk-form-danger' : (!form.controls.document.valid && !form.controls.document.pristine)}"
+            />
+          </div>
+          <div class="uk-margin">
+            <input
+              class="uk-input uk-form-large"
+              type="email"
+              placeholder="E-mail"
+              formControlName="email"
+              [ngClass]="{'uk-form-danger' : (!form.controls.email.valid && !form.controls.email.pristine)}"
+            />
+          </div>
+          <div class="uk-margin">
+            <input
+              class="uk-input uk-form-large"
+              type="password"
+              placeholder="Senha"
+              formControlName="password"
+              [ngClass]="{'uk-form-danger' : (!form.controls.password.valid && !form.controls.password.pristine)}"
+            />
+          </div>
+          <div class="uk-margin uk-text-right">
+            <button
+              class="uk-button uk-button-default"
+              [disabled]="form.invalid"
+              (click)="submit()"
+            >
+              Cadastrar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <p class="uk-text-center" *ngIf="!busy">
+      <a [routerLink]="['/login']" class="uk-button uk-button-link">Cancelar</a>
+    </p>
+  </div>
+</div>
+```
 
 </details>
 

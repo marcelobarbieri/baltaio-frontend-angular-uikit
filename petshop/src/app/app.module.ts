@@ -19,8 +19,7 @@ import { MaskDirective } from './directives/mask.directive';
 import { DataService } from './services/data.service';
 import { AuthService } from './services/auth.service';
 
-//import { ToastrModule } from 'ngx-toastr';
-import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -41,9 +40,8 @@ import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toas
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
-    //BrowserAnimationsModule, // required animations module
-    //ToastrModule.forRoot(), // ToastrModule added - https://www.npmjs.com/package/ngx-toastr
-    ToastNoAnimationModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added - https://www.npmjs.com/package/ngx-toastr
     AppRoutingModule
   ],
   providers: [DataService, AuthService],
