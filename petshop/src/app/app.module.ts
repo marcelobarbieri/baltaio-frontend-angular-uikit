@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
@@ -18,9 +16,11 @@ import { ProductCardComponent } from './components/store/product-card/product-ca
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoadingComponent } from './components/shared/loading/loading.component';
 import { MaskDirective } from './directives/mask.directive';
-import { CustomValidator } from './validators/custom.validator';
 import { DataService } from './services/data.service';
 import { AuthService } from './services/auth.service';
+
+//import { ToastrModule } from 'ngx-toastr';
+import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -35,15 +35,15 @@ import { AuthService } from './services/auth.service';
     FramePageComponent,
     ProductCardComponent,
     LoadingComponent,
-    MaskDirective,
-
+    MaskDirective
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(), // ToastrModule added - https://www.npmjs.com/package/ngx-toastr
+    //BrowserAnimationsModule, // required animations module
+    //ToastrModule.forRoot(), // ToastrModule added - https://www.npmjs.com/package/ngx-toastr
+    ToastNoAnimationModule,
     AppRoutingModule
   ],
   providers: [DataService, AuthService],
