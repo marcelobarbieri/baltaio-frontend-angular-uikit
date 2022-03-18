@@ -2928,7 +2928,6 @@ signup-page.component.html
 
 </details>
 
-
 <details>
   <summary>Password Reset</summary>
 
@@ -2942,20 +2941,20 @@ src/app/
 ```
 
 reset-password-page.component.ts
+
 ```ts
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { DataService } from 'src/app/services/data.service';
-import { CustomValidator } from 'src/app/validators/custom.validator';
-import { ToastrService } from 'ngx-toastr';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { DataService } from "src/app/services/data.service";
+import { CustomValidator } from "src/app/validators/custom.validator";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
-  selector: 'app-reset-password-page',
-  templateUrl: './reset-password-page.component.html'
+  selector: "app-reset-password-page",
+  templateUrl: "./reset-password-page.component.html",
 })
 export class ResetPasswordPageComponent implements OnInit {
-
   public form: FormGroup;
   public busy = false;
 
@@ -2964,42 +2963,41 @@ export class ResetPasswordPageComponent implements OnInit {
     private service: DataService,
     private fb: FormBuilder,
     private toastr: ToastrService
-  ) { 
+  ) {
     this.form = this.fb.group({
-      document: ['',Validators.compose([
-        Validators.minLength(14),
-        Validators.maxLength(14),
-        Validators.required,
-        CustomValidator.isCpf()
-      ])]
+      document: [
+        "",
+        Validators.compose([
+          Validators.minLength(14),
+          Validators.maxLength(14),
+          Validators.required,
+          CustomValidator.isCpf(),
+        ]),
+      ],
     });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   submit() {
     this.busy = true;
-    this
-      .service
-      .resetPassword(this.form.value)
-      .subscribe(
-        (data: any) => {
-          this.busy = false;
-          this.toastr.success(data.message, 'Senha Restaurada');
-          this.router.navigate(['/login']);
-        },
-        (err: any) => {
-          console.log(err);
-          this.busy = false;
-        }
-      );
-    
+    this.service.resetPassword(this.form.value).subscribe(
+      (data: any) => {
+        this.busy = false;
+        this.toastr.success(data.message, "Senha Restaurada");
+        this.router.navigate(["/login"]);
+      },
+      (err: any) => {
+        console.log(err);
+        this.busy = false;
+      }
+    );
   }
 }
 ```
 
 data.service.ts
+
 ```ts
 ...
 
@@ -3011,21 +3009,61 @@ resetPassword(data: any) {
 
 Mockoon
 
-POST  /accounts/reset-password
+POST /accounts/reset-password
+
 ```json
 {
-	"message": "Uma nova senha foi gerada e enviada para seu e-mail!"
+  "message": "Uma nova senha foi gerada e enviada para seu e-mail!"
 }
 ```
 
 reset-password-page.component.html
-```html
 
+```html
+<div class="uk-flex-center" uk-grid>
+  <div class="uk-width-1-3@m">
+    <p class="uk-text-center uk-margin-large-top uk-margin-medium-bottom">
+      <span
+        class="uk-icon uk-margin-small-right"
+        uk-icon="icon: logo-color-dark; ratio: 0.7"
+      ></span>
+    </p>
+
+    <app-loading *ngIf="busy"></app-loading>
+
+    <form [formGroup]="form" *ngIf="!busy">
+      <div class="uk-card uk-card-primary uk-card-body uk-box-shadow-small">
+        <h3 class="uk-card-title">Restauração de Senha</h3>
+        <div class="uk-margin">
+          <input
+            class="uk-input uk-form-large"
+            formControlName="document"
+            type="text"
+            placeholder="CPF"
+            mask="###.###.###-##"
+            [ngClass]="{'uk-form-danger': (!form.controls.document.valid && !form.controls.document.pristine) }"
+          />
+        </div>
+        <div class="uk-margin uk-text-right">
+          <button
+            class="uk-button uk-button-default"
+            [disabled]="form.invalid"
+            (click)="submit()"
+          >
+            Restaurar
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <p class="uk-text-center" *ngIf="!busy">
+      <a [routerLink]="['/login']" class="uk-button uk-button-link">Cancelar</a>
+    </p>
+  </div>
+</div>
 ```
 
 </details>
-
-
 
 <!--
 <details>
