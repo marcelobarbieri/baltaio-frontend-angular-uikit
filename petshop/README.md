@@ -2928,6 +2928,105 @@ signup-page.component.html
 
 </details>
 
+
+<details>
+  <summary>Password Reset</summary>
+
+```ps
+src/app/
+  pages/account/reset-password-page/
+    reset-password-page.component.html
+    reset-password-page.component.ts
+  services/
+    data.service.ts
+```
+
+reset-password-page.component.ts
+```ts
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { DataService } from 'src/app/services/data.service';
+import { CustomValidator } from 'src/app/validators/custom.validator';
+import { ToastrService } from 'ngx-toastr';
+
+@Component({
+  selector: 'app-reset-password-page',
+  templateUrl: './reset-password-page.component.html'
+})
+export class ResetPasswordPageComponent implements OnInit {
+
+  public form: FormGroup;
+  public busy = false;
+
+  constructor(
+    private router: Router,
+    private service: DataService,
+    private fb: FormBuilder,
+    private toastr: ToastrService
+  ) { 
+    this.form = this.fb.group({
+      document: ['',Validators.compose([
+        Validators.minLength(14),
+        Validators.maxLength(14),
+        Validators.required,
+        CustomValidator.isCpf()
+      ])]
+    });
+  }
+
+  ngOnInit(): void {
+  }
+
+  submit() {
+    this.busy = true;
+    this
+      .service
+      .resetPassword(this.form.value)
+      .subscribe(
+        (data: any) => {
+          this.busy = false;
+          this.toastr.success(data.message, 'Senha Restaurada');
+          this.router.navigate(['/login']);
+        },
+        (err: any) => {
+          console.log(err);
+          this.busy = false;
+        }
+      );
+    
+  }
+}
+```
+
+data.service.ts
+```ts
+...
+
+resetPassword(data: any) {
+        return this.http.post(`${this.url}/accounts/reset-password`, data);
+    }
+}
+```
+
+Mockoon
+
+POST  /accounts/reset-password
+```json
+{
+	"message": "Uma nova senha foi gerada e enviada para seu e-mail!"
+}
+```
+
+reset-password-page.component.html
+```html
+
+```
+
+</details>
+
+
+
 <!--
 <details>
   <summary></summary>
