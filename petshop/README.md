@@ -3068,6 +3068,7 @@ reset-password-page.component.html
 > View Commit to:
 
 - Sending Token
+- Edit Profile - Part 1
 
 </details>
 
