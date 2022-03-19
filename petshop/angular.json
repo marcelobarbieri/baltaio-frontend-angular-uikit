@@ -3,7 +3,7 @@
   "cli": {
     "analytics": "80adaad0-72a3-4b32-a55d-78ee5fd303be",
     "cache": {
-      "enabled": false
+      "enabled": true
     }
   },
   "version": 1,
