@@ -3065,10 +3065,9 @@ reset-password-page.component.html
 
 </details>
 
-<details>
-  <summary>Sending Token</summary>
+> View Commit to:
 
-View Commit
+- Sending Token
 
 </details>
 
