@@ -7,8 +7,7 @@ import { CustomValidator } from 'src/app/validators/custom.validator';
 
 @Component({
     selector: 'app-profile-page',
-    templateUrl: './profile-page.component.html',
-    styleUrls: ['./profile-page.component.css']
+    templateUrl: './profile-page.component.html'
 })
 export class ProfilePageComponent implements OnInit {
 
@@ -54,6 +53,23 @@ export class ProfilePageComponent implements OnInit {
                     this.busy = false;
                 }
             );
-
     }
+
+    submit() {
+        this.busy = true;
+        this
+            .service
+            .updateProfile(this.form.value)
+            .subscribe(
+                (data: any) => {
+                    this.busy = false;
+                    this.toastr.success(data.message, 'Atualização Completa!');
+                },
+                (err) => {
+                    console.log(err);
+                    this.busy = false;
+                }
+            );
+    }
+
 }

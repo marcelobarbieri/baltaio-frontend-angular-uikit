@@ -3069,8 +3069,7 @@ reset-password-page.component.html
 
 - Sending Token
 - Edit Profile - Part 1
-
-</details>
+- Edit Profile - Part 2
 
 <!--
 <details>
