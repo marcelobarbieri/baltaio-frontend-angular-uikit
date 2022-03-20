@@ -3070,9 +3070,4 @@ reset-password-page.component.html
 - Sending Token
 - Edit Profile - Part 1
 - Edit Profile - Part 2
-
-<!--
-<details>
-  <summary></summary>
-</details>
--->
+- Cart Models
