@@ -3073,3 +3073,4 @@ reset-password-page.component.html
 - Cart Models
 - Cart Util
 - Adding Items to the Cart
+- Manipulating the Cart
