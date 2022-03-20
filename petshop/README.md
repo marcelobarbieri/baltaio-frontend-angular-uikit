@@ -3072,3 +3072,4 @@ reset-password-page.component.html
 - Edit Profile - Part 2
 - Cart Models
 - Cart Util
+- Adding Items to the Cart

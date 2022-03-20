@@ -15,7 +15,7 @@ export class CartUtil {
         return JSON.parse(data);
     }
 
-    public static add(id: string, product: string, quantity: number, price: number, image: string) {
+    public static add(id: string, product: string, quantity: number, price: number, image: string[]) {
         // obtem o carrinho
         let cart = this.get();
 
