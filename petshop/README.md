@@ -3076,3 +3076,4 @@ reset-password-page.component.html
 - Manipulating the Cart
 - Viewing the Cart
 - Displaying Empty Cart
+- Total Order
