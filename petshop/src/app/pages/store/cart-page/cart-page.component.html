@@ -1,4 +1,4 @@
-<div class="uk-container">
+<div class="uk-container" *ngIf="cart?.items && cart.items.length > 0">
     <nav class="uk-navbar-container" uk-navbar>
         <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
@@ -16,8 +16,7 @@
             </ul>
         </div>
     </nav>
-</div>
-<div class="uk-container">
+    <br><br>
     <div class="uk-grid-small" uk-grid *ngFor="let item of cart?.items">
         <div class="uk-width-expand" uk-leader>
             <img src="{{ item.image }}" class="uk-align-left" alt="{{ item.product }}" width="64" height="64">
@@ -27,7 +26,7 @@
         <div>
             <br>
             {{ item.price/100 | currency: 'BRL' }}
-            <a class="uk-buton uk-button-link uk-align-right" (click)="remove(item)">
+            <a class="uk-button uk-button-link uk-align-right" (click)="remove(item)">
                 <span class="uk-icon" uk-icon="icon: close"></span>
             </a>
         </div>
@@ -40,4 +39,14 @@
             FINALIZAR COMPRA
         </a>
     </div>
+</div>
+
+<div class="uk-container" *ngIf="cart?.items && cart.items.length == 0">
+    <br>
+    <br>
+    <br>
+    <p class="uk-text-center"><em>Seu carrinho está vazio</em></p>
+    <br>
+    <br>
+    <br>
 </div>
